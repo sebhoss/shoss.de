@@ -1,0 +1,48 @@
+﻿;funktion1: N -> N
+;Die Funktion erwartet einen Wert als Eingabe und gibt auch
+;genau diesen zurück wenn der Wert kleiner 3 ist.
+;Ansonsten berechnet die Funktion das Ergebnis durch 3-maliges
+;rekursives Einsetzen des Eingabewertes in die Funktion selbst.
+;Der Eingabewert wird dabei einmal um Eins, einmal um Zwei und
+;einmal um Drei reduziert. Falls etwas negatives eingegeben wurde
+;gibt die Funktion "ausserhalb des Wertebereichs" zurück.
+(define (funktion1 n)
+  (cond
+    ;Falls n kleiner 3 aber positiv ist wird n zurückgegeben
+    ((AND (< n 3) (>= n 0)) n)
+    ;Falls n größer oder gleich 3 ist wird gerechnet
+    ((>= n 3) (+ (funktion1 (- n 1))
+                 (* 2 (funktion1 (- n 2)))
+                 (* 3 (funktion1 (- n 3)))))
+    ;Für alle anderen Fälle wird eine Fehlermeldung ausgegegeben
+    (else '(ausserhalb des Wertebereichs)) ))
+
+;funktion2: N -> N
+;Die Funktion rechnet das selbe wie funktion1, allerdings
+;auf iterative Art und Weise
+(define (funktion2 n) (iterativef n 3 0 1 2))
+
+;iterativef ist die Hilfsfunktion zur funktion2, die die eigentliche
+;Berechnung durchführt. Es werden folgende Parameter erwartet:
+;n := Die Zahl mit der ursprünglich gerechnet werden sollte
+;m := Eine Zählervariable die nach jedem Schritt hochgezählt wird
+;a := Das Ergebnis der Funktion für n-3
+;b := Das Ergebnis der Funktion für n-2
+;c := Das Ergebnis der Funktion für n-1
+(define (iterativef n m a b c)
+    (cond
+      ;Falls n kleiner 3 aber positiv ist wird n zurückgegeben
+      ((AND (< n 3) (>= n 0)) n)
+      ;Falls n negativ ist wird eine Fehlermeldung ausgegeben
+      ((< n 0) '(ausserhalb des Wertebereichs))
+      ;Falls noch nicht genügend iterative Schritte gemacht wurden
+      ;wird die Funktion erneut aufgerufen. Der Wert für n wird 
+      ;dabei nicht verändert. m erhöht sich um 1, a bekommt den 
+      ;Wert von b, c den Wert von b und c das Ergebnis der Rechnung
+      ;(+ (* a 3) (* b 2) c) zugeordnet
+      ((<= m n) (iterativef n (+ m 1) b c (+ (* a 3) (* b 2) c)))
+      ;Falls man nun beim gewünschten n angekommen ist wird das
+      ;Ergebnis aus c ausgegeben
+      (else c) ))
+
+         

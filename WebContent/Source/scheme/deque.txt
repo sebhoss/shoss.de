@@ -1,0 +1,49 @@
+﻿;create:    -> DEQUE
+;Eerstellt einen Stack bzw. eine Queue
+(define (create) '())
+
+;empty?: DEQUE -> Bool
+;Fragt ab ob die DEQUE leer ist
+(define (empty? deque)
+  (null? deque))
+
+;enqueue-right: Elem x DEQUE -> DEQUE
+;Legt ein Element rechts auf die DEQUE ab
+(define (enqueue-right elem deque)
+  (cond
+    ((NOT (integer? elem))
+     "Fehler: Bitte nur ganze Zahlen zur DEQUE hinzufügen")
+    ((empty? deque) (cons elem '()))
+    (else (cons (car deque) (enqueue-right elem (cdr deque))))))
+
+;enqueue-left: Elem x DEQUE -> DEQUE
+;Legt ein Element links auf die DEQUE ab
+(define (enqueue-left elem deque)
+  (cond
+    ((NOT (integer? elem))
+     "Fehler: Bitte nur ganze Zahlen zur DEQUE hinzufügen")
+    (else (cons elem deque))))
+
+;dequeue-left: DEQUE -> DEQUE
+;Entfernt auf der linken Seite der DEQUE ein Element
+(define (dequeue-left deque)
+  (if (empty? deque) "Fehler: DEQUE ist leer"
+      (cdr deque)))
+
+;dequeue-right: DEQUE -> DEQUE
+;Entfernt auf der rechten Seite der DEQUE ein Element
+(define (dequeue-right deque)
+  (if (empty? deque) "Fehler: DEQUE ist leer"
+      (reverse (cdr (reverse deque)))))
+
+;front: DEQUE -> Elem
+;Gibt das vorderste Element der DEQUE wieder
+(define (front deque)
+  (if (empty? deque) "Fehler: DEQUE ist leer"
+      (car deque)))
+
+;back: DEQUE -> Elem
+;Gibt das hinterste Element der DEQUE wieder
+(define (back deque)
+  (if (empty? deque) "Fehler: DEQUE ist leer"
+      (list-ref deque (- (length deque) 1))))

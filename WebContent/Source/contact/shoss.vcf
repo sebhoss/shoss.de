@@ -1,0 +1,12 @@
+BEGIN:VCARD
+PRODID:-//suda.co.uk//X2V 0.8.4.1 (BETA)//EN
+SOURCE:http://shoss.de/
+NAME:» shoss.de
+VERSION:3.0
+N;LANGUAGE=de;CHARSET=UTF-8:Hoß;Sebastian;;;
+FN;LANGUAGE=de;CHARSET=UTF-8:Sebastian Hoß
+EMAIL:mail@shoss.de
+ADR;LANGUAGE=de;CHARSET=UTF-8:;;Soester Straße 37/39;Münster;NRW;48149;Germany
+URL:http://shoss.de
+URL:xmpp:sebihoss@jabber.ccc.de
+END:VCARD

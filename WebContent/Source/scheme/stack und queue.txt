@@ -1,0 +1,51 @@
+﻿;create:    -> Stack/Queue
+;Eerstellt einen Stack bzw. eine Queue
+(define (create) '())
+
+;push: Elem x Stack -> Stack
+;Legt ein Element auf den Stack ab
+(define (push elem stack)
+  (cond
+    ((NOT (and (> elem 0)(integer? elem)))
+     "Fehler: Bitte nur natürliche Zahlen zum Stack hinzufügen")
+    ((empty? stack) (cons elem '()))
+    (else (cons (car stack) (push elem (cdr stack))))))
+
+;empty?: Stack/Queue -> Bool
+;Fragt ab ob der Stack/die Queue leer ist
+(define (empty? sq)
+  (null? sq))
+
+;top: Stack -> Elem
+;Gibt das oberste Element des Stacks zurück
+(define (top stack)
+  (if (empty? stack) "Fehler: Stack ist leer"
+      (list-ref stack (- (length stack) 1))))
+
+;pop: Stack -> Stack
+;Nimmt das oberste Element vom Stack runter und gibt den neuen Stack
+; zurück
+(define (pop stack)
+  (if (empty? stack) "Fehler: Stack ist leer"
+      (reverse (cdr (reverse stack)))))
+
+;enqueue: Elem x Queue -> Queue
+; Fügt ein Element der Queue hinzu
+(define (enqueue elem queue)
+  (cond
+    ((NOT (and (> elem 0) (integer? elem)))
+     "Fehler: Bitte nur natürliche Zahlen zur Queue hinzufügen")
+    ((empty? queue) (cons elem '()))
+    (else (cons (car queue) (enqueue elem (cdr queue))))))
+
+;front: Queue -> Elem
+;Gibt das erste Element der Queue zurück
+(define (front queue)
+  (if (empty? queue) "Fehler: Queue ist leer"
+      (car queue)))
+
+;dequeue: Queue -> Queue
+;Nimm das erste Element aus der Queue und gibt die neue Queue aus
+(define (dequeue queue)
+  (if (empty? queue) "Fehler: Queue ist leer"
+      (cdr queue)))

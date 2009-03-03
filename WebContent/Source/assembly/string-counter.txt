@@ -1,0 +1,22 @@
+﻿ORG 100h
+
+jmp     start                   ;Es wird zum Punkt "start" gesprungen"
+
+str1 db 'abcdefghiklmnop', 0    ; Die Variable str1 wird deklariert und im Speicher an Adresse 0 abgelegt
+
+
+start:
+
+lea     bx, str1                ; str1 wird in Register BX geladen
+mov     ax, 0                   ; 0 wird in Register AX geschrieben
+
+compare:
+cmp     [bx], 0                 ; Vergleiche ob BX schon leer ist
+
+je      done                    ; Falls ja wird zu "done" gesprungen
+inc     ax                      ; Falls nicht AX erhöht
+inc     bx                      ; Genauso wie BX
+jmp     compare                 ; ..und es wird wieder zurück zu "compare" gesprungen
+
+done:
+ret                             ; Wenn das Programm fertig ist wird es hier beendet. Länge des Strings steht nun in AX

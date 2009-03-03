@@ -1,0 +1,76 @@
+/* Basic Stylesheet */
+
+body {
+    margin-left: 20%;
+    margin-right: 10%;
+    margin-top: 10%;
+}
+
+ul {
+    margin-left: 2em;
+    margin-right: 4em;
+    list-style-type: circle;
+    line-height: 2em;
+}
+
+/* No borders around images. */
+img {
+     border: none;
+     padding: 0;
+}
+
+/* IF selected via keyboard (or something else) the link goes yellow */
+    a:focus { background-color: @YELLOW@;}
+
+/* If mouse hovers over a list element the list element gets a
+ * yellow background
+ */
+    li:hover { background-color: @YELLOW@;}
+    
+/* xfolkentry should not be displayed */
+    div.xfolkentry { display:none; }
+    
+/* VCards should not be displayed */    
+    div.vcard { display:none; }
+    
+/* Geo Tags should not be displayed */
+    div.geo { display:none; }
+    
+/* Microformats **/
+a[rel~="me"]:hover:after {
+    content: " " url('images/xfn-me.png');
+}
+
+a[rel~="colleague"]:hover:after {
+    content: " " url('images/xfn-colleague.png');
+}
+
+a[rel~="colleague"][rel~="met"]:hover:after {
+    content: " " url('images/xfn-colleague-met.png');
+}
+
+a[rel~="co-worker"]:hover:after {
+    content: " " url('images/xfn-colleague.png');
+}
+
+a[rel~="co-worker"][rel~="met"]:hover:after {
+    content: " " url('images/xfn-colleague-met.png');
+}
+
+a[rel~="friend"]:hover:after {
+    content: " " url('images/xfn-friend.png');
+}
+
+a[rel~="friend"][rel~="met"]:hover:after {
+    content: " " url('images/xfn-friend.png');
+}
+
+a[rel~="sweetheart"]:hover:after {
+    content: " " url('images/xfn-sweetheart.png');
+}
+
+a[rel~="sweetheart"][rel~="met"]:hover:after {
+    content: " " url('images/xfn-sweetheart.png');
+}
+
+

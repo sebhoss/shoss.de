@@ -1,0 +1,26 @@
+/*  Stylesheet for all code pages or those who like to use it */
+
+/* Necessary because basic.css intends this 4em for better looking
+ * now reverting for better looking again..
+ */
+    ul { margin-right: 0em; }
+
+/* List elements get a yellow background color when mouse is hovering */
+    li:hover { background-color: @YELLOW@;}
+
+div.back {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    font-size: 0.8em;
+    color: #888;
+}
+
+div.back a:visited {
+    text-decoration: none;
+    color: #888;
+}
+
+div.back a:hover {
+    background-color: @YELLOW@;
+}

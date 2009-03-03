@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xsl:stylesheet [<!ENTITY bullet "&#x2022;"> <!ENTITY nbsp "&#xa0;">]> 
+<!-- ====================================================================== 
+     Sep 5, 2007 2:05:58 PM                                                        
+
+     shoss.de    
+     The Homepage of Sebastian Hoß
+                   
+     Sebastian Hoß (mail@shoss.de)                                                               
+     ====================================================================== -->
+<project name="shoss.de" default="RELEASE">
+    <description>
+            The Homepage of Sebastian Hoß
+    </description>
+	
+	<!-- Set up build file properties              -->
+	<property file="build.properties"/>
+
+    <!-- ================================= 
+          target: RELEASE              
+         ================================= -->
+    <target name="RELEASE" depends="upload" description="--> Uploads all files to the webserver!">
+		
+    	<echo>RELEASE DONE!</echo>
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: init                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="init">
+     	<loadfile srcfile="${source.dir}/Includes/back-button.inc" property="back-button" />
+    	<loadfile srcfile="${source.dir}/Includes/body-comment.inc" property="body-comment" />
+    	<loadfile srcfile="${source.dir}/Includes/header-comment.inc" property="header-comment" />
+    	<loadfile srcfile="${source.dir}/Includes/vcard.inc" property="vcard" />
+    	
+    	<property name="upload_dir_html" value="html"/>
+
+    	<delete dir="${deploy.dir}" quiet="true" />
+    	<mkdir dir="${deploy.dir}" />  
+    	
+    	<tstamp>
+    		<format property="BUILDDATE" pattern="yyyy-MM-dd" locale="en"/>
+    	</tstamp>
+    	<buildnumber/>
+    </target>
+
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: copy                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="copy" depends="init">
+    	<copy todir="${deploy.dir}">
+    		<fileset dir="${source.dir}">
+    		    <exclude name="Includes/**"/>    			
+    		</fileset>
+        </copy>
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: replace                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="replace" depends="copy">
+        <replace dir="${deploy.dir}" token="@YELLOW@" value="${yellow}" />
+    	
+    	<replace dir="${deploy.dir}" token="@buildDate@" value="${BUILDDATE}" />
+    	<replace dir="${deploy.dir}" token="@buildNumber@" value="${build.number}" />
+    	
+    	<replace dir="${deploy.dir}" token="${token_backButton}" value="${back-button}" />
+    	<replace dir="${deploy.dir}" token="${token_bodyComment}" value="${body-comment}" />
+    	<replace dir="${deploy.dir}" token="${token_headerComment}" value="${header-comment}" />
+    	<replace dir="${deploy.dir}" token="${token_VCard}" value="${vcard}" />
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+	       target: package              
+	     - - - - - - - - - - - - - - - - - -->
+	<target name="package" depends="replace">
+	    <tar destfile="${RELEASE.dir}/shoss.de-${build.number}.tar.bz2" compression="bzip2">
+	    	<tarfileset dir="${source.dir}"
+	    		        prefix="WebContent/Source" />
+	        <tarfileset dir="${ant.dir}"
+	    	            prefix="Ant">
+	        	  <exclude name="ftp.properties" />
+	        	  <exclude name="build.number" />
+	        </tarfileset>
+	    </tar>
+	</target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: upload                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="upload" depends="package">
+    	<property file="ftp.properties" />
+    	<ftp server="${ftp.server}" 
+    	     userid="${ftp.user}"
+    	     password="${ftp.pass}"
+    	     passive="${passive}"
+    	     serverTimeZoneConfig="${timezone}"
+    	     newer="${newer}"
+    		 verbose="yes">
+    		<fileset dir="${deploy.dir}" />
+    	</ftp>
+    	
+    	<ftp server="${ftp.server}" 
+    	     userid="${ftp.user}"
+    	     password="${ftp.pass}"
+    		 remotedir="${upload_dir_html}"
+    	     passive="${passive}"
+    	     serverTimeZoneConfig="${timezone}"
+    	     newer="${newer}"
+    		 verbose="yes">
+            <fileset dir="${RELEASE.dir}">
+               <include name="shoss.de-${build.number}.tar.bz2"/>
+            </fileset>
+    	</ftp>  
+    </target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: generator                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="generator">
+        <property file="ftp.properties" />
+        <ftp server="${ftp.server}" 
+             userid="${ftp.user}"
+             password="${ftp.pass}"
+             passive="${passive}"
+             serverTimeZoneConfig="${timezone}"
+             newer="${newer}"
+             verbose="yes">
+        	<fileset dir="${source.dir}">
+        	    <include name="generator.xml"/>
+        	</fileset>
+
+        </ftp>
+    </target>
+
+	
+</project>

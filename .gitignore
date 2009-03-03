@@ -1,0 +1,11 @@
+.project
+
+.settings/
+
+Ant/ftp.properties
+
+Ant/build.number
+
+RELEASE/
+
+WebContent/Deploy/

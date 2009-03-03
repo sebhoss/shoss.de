@@ -1,0 +1,15 @@
+﻿;prod-sqr-iterative: N x N -> R
+; Diese Funktion berechnet das Produkt von i = m bis n
+; von i² iterativ
+(define (prod-sqr-iterative m n)
+  ;Hilfsfunktion, die die eigentliche Berechnung durchführt	
+  (define (h m n i e)
+    (cond
+      ((= i n) (* e (* i i)))
+      ((< i n) (h m n (+ i 1) (* e (* i i))))))
+  (cond
+    ;Parameterabfrage: m und n müssen positive ganze Zahlen sein
+    ((NOT (AND (integer? m) (integer? n) (> m 0) (> n 0)))
+     "Fehler: Nur natürliche Zahlen")
+    ((< n m) 0)
+    (else (h m n m 1))))

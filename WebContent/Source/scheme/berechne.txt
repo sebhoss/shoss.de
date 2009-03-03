@@ -1,0 +1,63 @@
+﻿(define (berechne f x y)
+  ;add: Z -> Z
+  ; Die Funktion add addiert die Zahlen x und y
+  (define (add x y)
+    (+ x y))
+
+  ;sub: Z -> Z
+  ; Die Funktion sub subtrahiert die Zahlen x und y
+  (define (sub x y)
+    (- x y))
+
+  ;mult: Z -> Z
+  ; Die Funktion mult multipliziert die Zahlen x und y
+  (define (mult x y)
+    (* x y))
+
+  ;div: Z -> Z
+  ; Die Funktion div teilt x durch y ganzzahlig
+  (define (div x y)
+    (round (/ x y)))
+
+  ;expon: Z -> Z
+  ; Die Funktion expon exponenziert x mit y
+  (define (expon x y)
+    (expt x y))
+
+  ;modulo: Z -> Z
+  ; Die Funktion modulo berechnet x modulo y
+  (define (mein-modulo x y)
+    (modulo x y))
+
+  ;sum: Z -> Z
+  ; Die Funktion sum berechnet die Summe von f(i) mit i=0 bis n
+  (define (sum f n)
+    (if (= n 0) (f 0)
+        (+ (f n) (sum f (- n 1)))))
+
+  ;prod: Z -> Z
+  ; Die Funktion prod berechnet das Produkt von f(i) mit i=1 bis n
+  (define (prod f n)
+    (if (= n 1) (f 1)
+        (* (f n) (prod f (- n 1)))))
+
+  ;Parameter überprüfung
+  (cond
+    ;Hier wird überprüft ob x entweder eine ganze Zahl ist oder
+    ; eine Prozedure und ob y eine ganze Zahl ist. Wenn nicht
+    ; wird eine Fehlermeldung ausgegeben.
+    ((not (and (OR (integer? x) (procedure? x)) (integer? y)))
+     "Fehler: x, y oder n nicht im richtigen Wertebereich")
+    ;Hier wird verglichen welche Funktion eingegeben wurde. Die
+    ; entsprechende Funktion wird dann aufgerufen. Falls keine 
+    ; bekannte Funktion eingegeben wurde wird eine Fehlermeldung
+    ; ausgegeben.
+    ((eq? f 'add) (add x y))
+    ((eq? f 'sub) (sub x y)) 
+    ((eq? f 'mult) (mult x y))
+    ((eq? f 'div) (div x y))
+    ((eq? f 'expon) (expt x y))
+    ((eq? f 'modulo) (mein-modulo x y))
+    ((eq? f 'sum) (sum x y))
+    ((eq? f 'prod) (prod x y))
+    (else "Keine bekannte Prozedure")))

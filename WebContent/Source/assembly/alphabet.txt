@@ -1,0 +1,59 @@
+﻿org 100h
+
+CountA  db 1       ; 
+CountB  db 1       ;
+CountC  db 1       ;
+
+LoopA:             ; a-Schleife, die die Anzahl an 'a's zählt
+mov     ah,01h     ; 01hex Funktionscode für Ein-/Ausgabe
+int     21h        ; lese Zeichen von Tastatur und schreibe in Register al
+cmp     al,61h     ; Vergleiche Register al mit dem ASCII-Code 61 (a)
+jnz     TestB      ; Wenn kein 'a' eingegeben wurde überprüfe ob 'b'
+inc     CountA     ; Wenn 'a' eingegeben wurde wird der Zähler erhöht
+jmp     LoopA      ; Wiederhole die a-Schleife..
+
+TestB:
+cmp     al,62h     ; Vergleiche Register al mit ASCII-Code 62 (b)
+jnz     NoWord     ; Wenn kein 'b' eingegeben wurde ist dies kein Wort
+inc     CountB     ; Wenn 'b' eingegeben wurde wird der Zähler erhöht
+
+LoopB:             ; b-Schleife, die die Anzahl an 'b's zählt
+mov     ah,01h     ; 01hex Funktionscode für Ein-/Ausgabe
+int     21h        ; lese Zeichen von Tastatur und schreibe in Register al
+cmp     al,62h     ; Vergleiche Register al mit dem ASCII-Code 62 (b)
+jnz     TestC      ; Wenn kein 'b' eingegeben wurde überprüfe ob 'c'
+inc     CountB     ; Wenn 'b' eingegeben wurde wird der Zähler erhöht
+jmp     LoopB      ; Wiederhole die b-Schleife..
+
+TestC:                
+cmp     al,63h     ; Vergleiche Register al mit dem ASCII-Code 63 (c)
+jnz     NoWord     ; Wenn kein 'c' eingegeben wurde ist dies kein Wort
+inc     CountC     ; Wenn 'c' eingegeben wurde wird der Zähler erhöht
+
+LoopC:             ; c-Schleife, die die Anzahl an 'c's zählt
+mov     ah,01h     ; 01hex Funktionscode für Ein-/Ausgabe
+int     21h        ; lese Zeichen von Tastatur und schreibe in Register al
+cmp     al,63h     ; Vergleiche Register al mit dem ASCII-Code 63 (c)
+jnz     Test0      ; Wenn kein 'c' eingegeben wurde überprüfe ob '0'
+inc     CountC     ; Wenn 'c' eingegeben wurde wird der Zähler erhöht
+jmp     LoopC      ; Wiederhole die c-Schleife
+
+Test0:        
+cmp     al,30h     ; Vergleiche Register al mit dem ASCII-Code 30 (0)        
+jnz     NoWord     ; Wenn keine '0' eingegeben wurde ist dies kein Wort
+
+IsWord:
+mov     ah,CountA   ; Die Anzahl an 'a's wird in das Register ah geschrieben
+cmp     ah,CountC   ; Anzahl an 'a's wird mit der Anzahl an 'c's verglichen
+jnz     NoWord      ; Wenn die Anzahl von 'a's und 'c's nicht gleich ist..
+shl     ah,1        ; Links-Shift des ah Registers, also Verdopplung von ah
+cmp     ah,CountB   ; Doppelte Anzahl an 'a's muss gleich Anzahl 'b's sein
+jnz     NoWord      ; Wenn nicht ist dies kein gültiges Wort
+mov     ax,1        ; Wenn doch wird '1' in das ax Register geschrieben
+jmp     End         ; Es wird zum 'End' label gesprungen
+
+NoWord:
+mov     ax,0        ; Wenn die Eingabe kein gültiges Wort war wird 0 in das ax Register geschrieben
+
+End:
+ret                 ; Das Programm wird beendet

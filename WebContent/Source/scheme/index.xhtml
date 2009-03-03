@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+
+
+<!--#include virtual="/Includes/header-comment.inc" -->
+<head profile="http://gmpg.org/xfn/11">
+
+  <meta name="author" content="Sebastian Hoß" />
+  <meta name="description" content="Scheme Programme zum Umfallen" />
+  
+  <link rel="canonical" href="http://shoss.de/scheme" />
+  
+  <link rel="stylesheet" type="text/css" href="../basic.css" title="style" />
+  <link rel="stylesheet" type="text/css" href="../subpages.css" title="style" />
+
+  <title>&#187; shoss.de: scheme</title>
+  
+</head>
+
+
+<!--#include virtual="/Includes/body-comment.inc" -->
+<body>
+<!--#include virtual="/Includes/back-button.inc" -->
+
+  <div>
+    Dies sind <a href="http://www.schemers.org/">Scheme</a> Programme, die während des Studiums geschrieben wurden.
+  </div>
+
+  <ul>
+  	<li><strong><a href="app und rev.txt">Append &amp; Reverse</a></strong><br /> Neu-Implementierung der Scheme Funktionen append und reverse.</li>
+
+  	<li><strong><a href="berechne.txt">Berechne</a></strong><br />Das Packet berechne bietet elementare Funktion zur Berechnung an, macht diese nach Außen aber nicht sichtbar.
+  	Folgendes kann berechnet werden: add, sub, mult, div (ganzzahlig), expon, modulo, Summe von i = 0 bis n und das Produkt von i = 1 bis n.<br />
+  	Aufruf erfolgt z.B. mit (berechne ‘add 3 4)</li>
+
+	<li><strong><a href="binom.txt">Binom</a></strong><br />Berechnet den Wert der Binominal-Koeffizienten n und k.</li>
+	
+	<li><strong><a href="deque.txt">DEQUE</a></strong><br />Implementierung des Datentyps DEQUEUE (Double Ended QUEue).</li>
+	
+	<li><strong><a href="fast-expon.txt">Fast-Expon</a></strong><br />Exponentfunktion, die schneller bei großem Exponent arbeitet.</li>
+
+  	<li><strong><a href="listen.txt">Listen</a></strong><br />Implementierung einer max-elem Funktion, die das größte Element einer Liste zurück gibt, 
+  	sowie der min-max-pair Funktion, die das Paar aus kleinstem und größtem Element zurück gibt, sowie der num-of-ints Funktion, die die Anzahl der ganzen Zahlen in 
+  	einer Liste zurück gibt, sowie der replace Funktion, die jedes Element a durch Element b ersetzt.</li>
+  	
+  	<li><strong><a href="modulo.txt">Modulo</a></strong><br />Neu-Implementierung der modulo Funktion.</li>
+  	
+  	<li><strong><a href="nsame.txt">NSAME</a></strong><br />Zuerst werden die Funktion null und succ implementiert, anschließend die Funktionen add, mult und expon
+  	ohne die bekannten primitiven Funktionen aus Scheme.</li>
+  	
+  	<li><strong><a href="nullstelle.txt">Nullstelle</a></strong><br />Berechnet die Nullstellen der Gleichung ax² + bx + c = 0, mit a,b,c aus Z.</li>
+  	
+  	<li><strong><a href="prod-sqr-iterative.txt">Prod-Sqr-Iterative</a></strong><br />Berechnet iterativ das Produkt von i = m bis n von i².</li>
+  	
+  	<li><strong><a href="prod-sqr-rekursive.txt">Prod-Sqr-Rekursive</a></strong><br />Berechnet rekursiv das Produkt von i = m bis n von i².</li>
+  	
+  	<li><strong><a href="prod-sqrt.txt">Prod-Sqrt</a></strong><br />Berechnet iterativ das Produkt von i = m bis n von der Wurzel aus i/m.</li>
+  	
+  	<li><strong><a href="rek und iter.txt">Rekursion &amp; Iteration</a></strong><br />Rekursive und iterative Implementierung der Funktion 
+  	f(n) = n für n &lt; 3 und f(n) = f(n -1) + 2 * f(n - 2) + 3 * f(n -3) für n &gt;= 3.</li>
+  	
+  	<li><strong><a href="russmult.txt">Russmult</a></strong><br />Implementierung der Russische Multiplikation (-&gt; <a href="http://de.wikipedia.org/wiki/Russische_Bauernmultiplikation">Wikipedia</a>)</li>
+  	  	
+  	<li><strong><a href="stack und queue.txt">STACK &amp; QUEUE</a></strong><br />Implementierung der Datentypen STACK &amp; QUEUE mit ELEM = INT.</li>
+  	  	
+  	<li><strong><a href="sum-iterative.txt">Sum-Iterative</a></strong><br />Berechnet iterativ die Summe von i = m bis n von (i + m)/(i + 1)².</li>
+  	
+  	<li><strong><a href="sum-rekursive.txt">Sum-Rekursive</a></strong><br />Berechnet rekursiv die Summe von i = m bis n von (i + m)/(i + 1)².</li>
+  	
+  	<li><strong><a href="vektor und matrix.txt">Vektor &amp; Matrix</a></strong><br />Implementierung der Vektor-Addition sowie der Skalarmultiplikation. 
+  	Des weiteren wurde die Matrix-Addition, Matrix-Multiplikation und ebenfalls die Matrix-Skalarmultiplikation implementiert.</li>
+
+  </ul>
+  
+  <div>Fehler gefunden? Bitte hier melden: <a href="http://shoss.de/bugs" rel="me">http://shoss.de/bugs</a></div>
+  
+
+<!--#include virtual="/Includes/vcard.inc" -->
+
+<div class="xfolkentry"><a class="taggedlink" href="http://shoss.de" rel="me">
+	Homepage von Sebastian Hoß</a>
+</div>
+
+<div class="xfolkentry"><a class="taggedlink" href="." rel="me">
+	Scheme Programme zum Umfallen</a>
+</div>
+
+<div class="xfolkentry"><a class="taggedlink" href="http://www.schemers.org/">
+	schemers.org</a>
+</div>
+
+<div class="xfolkentry"><a class="taggedlink" href="http://shoss.de/bugs" rel="me">
+	Ein Bugtracker zum Spielen</a>
+</div>
+
+</body>
+</html>

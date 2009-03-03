@@ -1,0 +1,31 @@
+ <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+          xmlns:foaf="http://xmlns.com/foaf/0.1/"
+          xmlns:dc="http://purl.org/dc/elements/1.1/"
+          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+ <foaf:PersonalProfileDocument rdf:about="">
+    <foaf:maker rdf:resource="#me"/>
+    <foaf:primaryTopic rdf:resource="#me"/>
+</foaf:PersonalProfileDocument>
+
+<foaf:Person rdf:ID="me" xml:lang="de">
+    
+    <!-- Name: -->
+    <foaf:name>Sebastian Hoß</foaf:name>
+    <foaf:givenname>Sebastian</foaf:givenname>
+    <foaf:family_name>Hoß</foaf:family_name>
+    
+    <!-- Nickname: -->
+    <foaf:nick>seb</foaf:nick>
+ 
+    <!-- E-Mail-Adresse :-->
+    <foaf:mbox rdf:resource="mailto:mail@shoss.de"/>
+    
+    <!-- Hash der Mailadresse: -->
+    <foaf:mbox_sha1sum>785983e1b2b3b75617536b0a96d450cb073e9eb7</foaf:mbox_sha1sum>
+ 
+    <!-- private Webseite: -->
+    <foaf:homepage rdf:resource="http://shoss.de/"/>
+      
+</foaf:Person>
+ 
+ </rdf:RDF>

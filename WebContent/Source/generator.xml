@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generator>
+<generator xmlns="http://www.mozilla.org/microsummaries/0.1"
+           name="shoss.de titles">
+  <template>
+    <transform xmlns="http://www.w3.org/1999/XSL/Transform" version="1.0">
+        <output method="text"/>
+        
+        <template match="/">
+            <text> (</text>
+            <value-of select="//title/text()" />
+            <text>)</text>
+        </template>
+        
+    </transform>
+  </template>
+  
+  <pages>
+    <include>^http://shoss\.de/</include>
+  </pages>
+  
+  <update interval="10080" />
+    
+</generator>

@@ -1,0 +1,12 @@
+﻿;sum-iterative: N x N -> R
+; Berechnet die Summe von i = m bis n von (i + m)/(i + 1)² iterativ
+(define (sum-iterative m n)
+  (define (hilfe m n i e)
+    (cond 
+      ((= i n) (+ e (/ (+ i m) (* (+ i 1) (+ i 1)))))
+      ((< i n) (hilfe m n (+ i 1) (+ e (/ (+ i m) (* (+ i 1) (+ i 1))))))))
+  (cond
+    ((NOT (AND (integer? m) (integer? n) (> m 0) (> n 0)))
+     "Fehler: Nur natürliche Zahlen")
+    ((< n m) 0)
+    (else (hilfe m n m 0))))

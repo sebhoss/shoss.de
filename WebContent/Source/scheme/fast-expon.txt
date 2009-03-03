@@ -1,0 +1,39 @@
+﻿;expon: N -> N
+; Die Funktion berechnet m hoch n und benutzt dazu die
+; Funktion fast-expon. Außerdem überprüft expon die
+; Eingabeparameter darauf ob sie aus dem Bereich der
+; natürlichen Zahlen (inklusive Null) kommen.
+(define (expon m n)
+  ;fast-expon: N -> N
+  ; Diese Funktion erledigt die eigentliche Rechnung
+  (define (fast-expon m n)
+    (cond
+      ; m hoch 0 ist immer 1
+      ((= n 0) 1)
+      ; m hoch 1 ist immer m
+      ((= n 1) m)
+      ; m hoch 2 ist immer m * m
+      ((= n 2) (* m m))
+      ;Falls keine der vorherigen Abbruchbedingungen
+      ; eingetretten sind, n also größer als n ist, wird die 
+      ; Funktion rekursiv aufgerufen. Für gerade n mit sich selbst
+      ; und 2 als Exponent. Der innere Aufruf hat dabei die Basis
+      ; m und n/2 als Exponent. Dies wird solange gemacht
+      ; bis n = 2 ist oder eine der anderen Abbruchbedingungen 
+      ; eingetretten ist.
+      ((= (remainder n 2) 0) (fast-expon (fast-expon m (/ n 2)) 2))
+      ;Falls n ungerade ist wird die Basis mit dem rekursiven 
+      ; Funktionsaufruf von fast-expon mit um Eins reduziertem
+      ; Exponent multipliziert.
+      (else (* m (fast-expon m (- n 1))))))
+  (cond
+    ;Es wird überprüft ob m und n natürliche Zahlen 
+    ; (inklusive Null) sind
+    ((NOT (AND (integer? m) (integer? n)
+               (>= m 0) (>= n 0)))
+     ;Falls m oder n keine natürlichen Zahlen (inklusive Null)
+     ; sind wird diese Fehlermeldung ausgegeben
+     "Fehler: m und n müssen natürliche Zahlen sein")
+    ;Falls m und n natürliche Zahlen sind (inklusive Null) wird
+    ; die Funktion fast-expon mit den Werten m und n aufgerufen
+    (else (fast-expon m n))))
